@@ -1,15 +1,33 @@
-import React from 'react'
+import React, { useState } from 'react'
 import QRCode from "react-qr-code";
 
-const QrCodeGenerator = ({value}) => {
+const QrCodeGenerator = () => {
+    const [value, setValue] = useState('')
+    const [result, setResult] = useState('')
+    const [history, setHistory] = useState([])
+    const [isShowHistory, setIsShowHistory] = useState(false)
+
+    const onChangeHandler = (e) => {
+        setValue(e.target.value);
+    }
+    const onClickHandler = () => {
+        setResult(value)
+        setHistory([...history, value])
+        setValue('')
+    }
+    const showHistory = () => {
+      setIsShowHistory(!isShowHistory)
+    }
+
   return (
-    <QRCode 
-    value={value} 
-    size={150}
-    level='L'
-    bgColor='white'
-    fgColor='black'
-    />
+    <div>
+      {result !== '' && <QRCode value={result} size={150} level='L' bgColor='white' fgColor='black'/>}
+      <input type="text" value={value} onChange={onChangeHandler}/>
+      <button onClick={onClickHandler}>Create QR code</button>
+      <button onClick={showHistory}>Show QR code history</button>
+      {isShowHistory && <ul>{history.map((el, ind) => <li key={ind}>{el}</li> )}</ul> }
+    </div>
+    
   )
 }
 
