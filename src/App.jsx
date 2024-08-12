@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import QrCodeGenerator from './QrCodeGenerator'
+import QrCodeScanner from './QrCodeScanner'
 
 const App = () => {
     
@@ -7,6 +8,7 @@ const App = () => {
   return (
     <div>
         <QrCodeGenerator/>
+        <QrCodeScanner/>
     </div>
   )
 }

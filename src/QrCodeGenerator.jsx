@@ -24,7 +24,10 @@ const QrCodeGenerator = () => {
       {result !== '' && <QRCode value={result} size={150} level='L' bgColor='white' fgColor='black'/>}
       <input type="text" value={value} onChange={onChangeHandler}/>
       <button onClick={onClickHandler}>Create QR code</button>
-      <button onClick={showHistory}>Show QR code history</button>
+
+      <button onClick={showHistory}>{isShowHistory ? "Hide QR code history"
+      : "Show QR code history"}</button>
+      
       {isShowHistory && <ul>{history.map((el, ind) => <li key={ind}>{el}</li> )}</ul> }
     </div>
     
